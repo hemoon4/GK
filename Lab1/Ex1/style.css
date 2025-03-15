@@ -1,0 +1,14 @@
+/* This style section is here to make the canvas more obvious on the
+    page.  It is white on a light gray page background, with a thin
+    black border. */
+body {
+    background-color: #DDDDDD;
+}
+canvas {
+    background-color: white;
+    display: block;
+}
+.canvasHolder {
+    border:2px solid black;
+    float: left; /* This makes the border exactly fit the canvas. */
+}
