@@ -18,7 +18,7 @@ function randomColorString() {
  * doMouseDrag, and possibly doMouseUp to change the reponse to
  * mouse events.  As an example, this program does some simple drawing.
  */
-function installMouseHandler(graphics) {
+function installMouseHandler(graphics, canvas) {
 
     let dragging = false;  // set to true when a drag action is in progress.
     let prevX, prevY;      // previous mouse position during a drag.
@@ -201,15 +201,16 @@ function addGraphicsContextExtras(graphics) {
     }
 }    // end of addGraphicsContextExtras()
 
-function clearScreen(graphics) {
+function clearScreen(graphics, canvas) {
     graphics.fillStyle = "white";
     graphics.fillRect(0,0,canvas.width,canvas.height);
 }
 
 window.addEventListener("load", (event) => {
     let graphics;
+    let canvas;
     try {
-        const canvas = document.getElementById("canvas");
+        canvas = document.getElementById("canvas");
         graphics = canvas.getContext("2d");
     } catch(e) {
         document.getElementById("canvasholder").innerHTML =
@@ -219,12 +220,12 @@ window.addEventListener("load", (event) => {
     }
 
     addGraphicsContextExtras(graphics);
-    installMouseHandler(graphics);
-    clearScreen(graphics);
+    installMouseHandler(graphics, canvas);
+    clearScreen(graphics, canvas);
 
     const clearBtn = document.getElementById("clearBtn");
 
     clearBtn.addEventListener("click", (event) => {
-        clearScreen(graphics);
+        clearScreen(graphics, canvas);
     });
 });
