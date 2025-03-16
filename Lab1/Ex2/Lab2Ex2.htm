@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <!-- This web page does the minimal setup for using mouse events along
+   with 2D canvas graphics. -->
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>CS424, Lab 2, Exercise 2</title>
+    <link href="./style.css" rel="stylesheet">
+    <link href="data:text/css,%3Ais(%5Bid*%3D'google_ads_iframe'%5D%2C%5Bid*%3D'taboola-'%5D%2C.taboolaHeight%2C.taboola-placeholder%2C%23credential_picker_container%2C%23credentials-picker-container%2C%23credential_picker_iframe%2C%5Bid*%3D'google-one-tap-iframe'%5D%2C%23google-one-tap-popup-container%2C.google-one-tap-modal-div%2C%23amp_floatingAdDiv%2C%23ez-content-blocker-container)%20%7Bdisplay%3Anone!important%3Bmin-height%3A0!important%3Bheight%3A0!important%3B%7D" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h2>Lab 2, Exercise 2: Mousing</h2>
+    <noscript>
+        <!-- This message will be shown in the page if JavaScript is not available. -->
+        <p>JavaScript is required to use this page.</p>
+    </noscript>
+    <div>
+        <label for="colorChoice"><strong>Color:</strong></label>
+        <select id="colorChoice">
+            <option value="0" selected="selected">Random</option>
+            <option value="1">Red</option>
+            <option value="2">Green</option>
+            <option value="3">Blue</option>
+            <option value="4">Pink</option>
+        </select>
+        <label for="shapeChoice"><strong>Shape:</strong></label>
+        <select id="shapeChoice">
+            <option value="0" selected="selected">Random</option>
+            <option value="5" selected="selected">Pentagon</option>
+        </select>
+        <button id="clearBtn">Clear</button>
+    </div>
+    <div id="canvasholder">
+        <canvas id="canvas" width="800" height="600">
+            <!-- This message is shown on the page if the browser doesn't support the canvas element. -->
+        Canvas not supported.
+        </canvas>
+    </div>
+    <script src="./script.js"></script>
+    <script>mendeleyWebImporter = {
+  downloadPdfs(e,t) { return this._call('downloadPdfs', [e,t]); },
+  open() { return this._call('open', []); },
+  setLoginToken(e) { return this._call('setLoginToken', [e]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.9739079369679529', methodName, methodArgs }, 'https://e-uczelnia.ath.bielsko.pl');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script>
+</body>
+</html>
