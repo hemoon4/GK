@@ -35,10 +35,10 @@ function installMouseHandler(graphics) {
         if (evt.button != 0) {
             return;  // don't respond unless the button is the main (left) mouse button.
         }
-        var x,y;  // mouse position in canvas coordinates
-        var r = canvas.getBoundingClientRect();
-        x = Math.round(evt.clientX - r.left);  // translate mouse position from screen coords to canvas coords.
-        y = Math.round(evt.clientY - r.top);   // round to integer values; some browsers would give non-integers.
+        // mouse position in canvas coordinates
+        const r = canvas.getBoundingClientRect();
+        const x = Math.round(evt.clientX - r.left);  // translate mouse position from screen coords to canvas coords.
+        const y = Math.round(evt.clientY - r.top);   // round to integer values; some browsers would give non-integers.
         dragging = true;  // (this won't be the case for all mousedowns in all programs)
         if (dragging) {
             const startX = prevX = x;
@@ -51,14 +51,14 @@ function installMouseHandler(graphics) {
     }
     
     function doMouseMove(evt) {
-            // This function is called when the user moves the mouse during a drag.
+        // This function is called when the user moves the mouse during a drag.
         if (!dragging) {
             return;  // (shouldn't be possible)
         }
-        var x,y;  // mouse position in canvas coordinates
-        var r = canvas.getBoundingClientRect();
-        x = Math.round(evt.clientX - r.left);  
-        y = Math.round(evt.clientY - r.top);
+        // mouse position in canvas coordinates
+        const r = canvas.getBoundingClientRect();
+        const x = Math.round(evt.clientX - r.left);  
+        const y = Math.round(evt.clientY - r.top);
         
         /*------------------------------------------------------------*/
         /* TODO: Add support for more drawing tools. */
@@ -67,23 +67,23 @@ function installMouseHandler(graphics) {
             return;  // don't draw squares too close together
         }
             
-        if (colorChoice == 0) {
+        if (colorChoice === 0) {
             graphics.fillStyle = randomColorString();
         }
-        else if (colorChoice == 1) {
+        else if (colorChoice === 1) {
             graphics.fillStyle = "red";
         }
-        else if (colorChoice == 2) {
+        else if (colorChoice === 2) {
             graphics.fillStyle = "green";
         }
-        else if (colorChoice == 3) {
+        else if (colorChoice === 3) {
             graphics.fillStyle = "blue";
         } else if(colorChoice === 4) {
             graphics.fillStyle = "pink";
         }
         //https://www.coding.academy/blog/how-to-draw-regular-polygons-using-the-html-canvas
         let numberOfSides = Number(shapeSelect.value);
-        if (numberOfSides === 0) {
+        if (numberOfSides === 0 || isNaN(numberOfSides)) {
             numberOfSides = Math.round(Math.random() * 2 + 3); //[3,5]
         }
         const radius = 40;
@@ -160,7 +160,7 @@ function addGraphicsContextExtras(graphics) {
             return;
         this.beginPath();
         this.moveTo(arguments[0],arguments[1]);
-        for (var i = 2; i+1 < arguments.length; i = i + 2) { 
+        for (let i = 2; i+1 < arguments.length; i = i + 2) { 
             this.lineTo(arguments[i],arguments[i+1]);
         }
         this.closePath();
@@ -171,7 +171,7 @@ function addGraphicsContextExtras(graphics) {
             return;
         this.beginPath();
         this.moveTo(arguments[0],arguments[1]);
-        for (var i = 2; i+1 < arguments.length; i = i + 2) { 
+        for (let i = 2; i+1 < arguments.length; i = i + 2) { 
             this.lineTo(arguments[i],arguments[i+1]);
         }
         this.closePath();
@@ -196,7 +196,7 @@ function addGraphicsContextExtras(graphics) {
         this.stroke();
     }
     graphics.getRGB = function(x,y) {
-        var color = this.getImageData(x,y,1,1);
+        const color = this.getImageData(x,y,1,1);
         return color.data;
     }
 }    // end of addGraphicsContextExtras()

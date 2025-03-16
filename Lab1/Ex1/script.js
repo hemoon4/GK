@@ -90,13 +90,11 @@ function draw(graphics) {
  * true, pixelSize is the maximum of its horizontal and vertical sizes.)
  */
 function applyWindowToViewportTransformation(left,right,bottom,top,preserveAspect) {
-    var displayAspect, windowAspect;
-    var excess;
-    var pixelwidth, pixelheight;
     if (preserveAspect) {
         // Adjust the limits to match the aspect ratio of the drawing area.
-        displayAspect = Math.abs(canvas.height / canvas.width);
-        windowAspect = Math.abs(( top-bottom ) / ( right-left ));
+        const displayAspect = Math.abs(canvas.height / canvas.width);
+        const windowAspect = Math.abs(( top-bottom ) / ( right-left ));
+        let excess;
         if (displayAspect > windowAspect) {
             // Expand the viewport vertically.
             excess = (top-bottom) * (displayAspect/windowAspect - 1);
@@ -112,9 +110,9 @@ function applyWindowToViewportTransformation(left,right,bottom,top,preserveAspec
     }
     graphics.scale( canvas.width / (right-left), canvas.height / (bottom-top) );
     graphics.translate( -left, -top );
-    pixelwidth =  Math.abs(( right - left ) / canvas.width);
-    pixelheight = Math.abs(( bottom - top ) / canvas.height);
-    let pixelSize = Math.max(pixelwidth,pixelheight);
+    const pixelwidth =  Math.abs(( right - left ) / canvas.width);
+    const pixelheight = Math.abs(( bottom - top ) / canvas.height);
+    const pixelSize = Math.max(pixelwidth,pixelheight);
 }  // end of applyWindowToViewportTransformation()
 
 
@@ -160,7 +158,7 @@ function addGraphicsContextExtras(graphics) {
            return;
         this.beginPath();
         this.moveTo(arguments[0],arguments[1]);
-        for (var i = 2; i+1 < arguments.length; i = i + 2) { 
+        for (let i = 2; i+1 < arguments.length; i = i + 2) { 
            this.lineTo(arguments[i],arguments[i+1]);
         }
         this.closePath();
@@ -171,7 +169,7 @@ function addGraphicsContextExtras(graphics) {
             return;
         this.beginPath();
         this.moveTo(arguments[0],arguments[1]);
-        for (var i = 2; i+1 < arguments.length; i = i + 2) { 
+        for (let i = 2; i+1 < arguments.length; i = i + 2) { 
             this.lineTo(arguments[i],arguments[i+1]);
         }
         this.closePath();
@@ -196,7 +194,7 @@ function addGraphicsContextExtras(graphics) {
         this.stroke();
     }
     graphics.getRGB = function(x,y) {
-        var color = this.getImageData(x,y,1,1);
+        const color = this.getImageData(x,y,1,1);
         return color.data;
     }
 }    // end of addGraphicsContextExtras()
