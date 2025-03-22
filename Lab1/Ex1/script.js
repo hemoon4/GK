@@ -74,8 +74,6 @@ function draw(graphics) {
     graphics.lineWidth = 2;
     graphics.stroke();
     graphics.closePath();
-
-
 } // end of draw()
 
 

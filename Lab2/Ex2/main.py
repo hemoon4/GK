@@ -5,13 +5,10 @@ pygame.init()
 win = pygame.display.set_mode((600, 600))
 pygame.display.set_caption("First Game")
 
-# deklarowanie kolorów
 WHITE = (255, 255, 255)
 YELLOW = (255, 255, 0)
 BLACK = (0, 0, 0)
 
-# dodac transakcje pieciokata (w moim przypadku
-# zadanie 2:  wariant % 4 ja mam pierwsze
 
 win.fill(WHITE)
 center_x, center_y = win.get_width() / 2, win.get_height() / 2
